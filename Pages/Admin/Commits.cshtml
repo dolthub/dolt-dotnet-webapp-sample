@@ -1,0 +1,49 @@
+@page
+@model RazorPagesMovie.Pages.Admin.CommitsModel
+
+@{
+    ViewData["Title"] = "Commits";
+}
+
+<h1>Commits</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Commits[0].CommitHash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commits[0].Committer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commits[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Commits[0].Message)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Commits) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommitHash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Committer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                <a asp-page="/Admin/Diff" asp-route-id="@item.CommitHash">Diff</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

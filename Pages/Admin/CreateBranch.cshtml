@@ -1,0 +1,20 @@
+@page
+@model RazorPagesMovie.Pages.Movies.CreateBranchModel
+
+@{
+    ViewData["Title"] = "Create";
+    var currentBranch = Model.GetCurrentBranch();
+}
+
+<h1>Create New branch</h1>
+Create a new branch from the tip of @currentBranch 
+
+<div>
+    &nbsp;
+</div>
+
+<form method="post">
+    <label for="newBranchName">New Branch Name:</label>
+    <input type="text" id="newBranchName" asp-for="NewBranchName" />
+    <button type="submit">Submit</button>
+</form>

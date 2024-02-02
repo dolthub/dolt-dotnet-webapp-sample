@@ -1,0 +1,62 @@
+@page
+@model RazorPagesMovie.Pages.Admin.BranchesModel
+
+@{
+    ViewData["Title"] = "Dolt Branches";
+    var activeBranch = Model.CurrentBranch();
+}
+
+<h1>Branches</h1>
+
+<div>
+    Active Branch: @activeBranch
+</div>
+
+<div>
+    <a asp-page="/Admin/CreateBranch">Create new branch</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Branches[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branches[0].Hash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branches[0].LatestCommitMessage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Branches[0].LatestCommitDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Branches) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LatestCommitMessage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LatestCommitDate)
+            </td>
+            <td>
+                <a asp-page="/Admin/SetBranch" asp-route-id="@item.Name">Set as active branch</a>
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                @if (item.Name != "main") {
+                    <a asp-page="/Admin/MergeBranch" asp-route-id="@item.Name">Merge to main</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

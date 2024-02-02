@@ -1,0 +1,132 @@
+@page
+@model RazorPagesMovie.Pages.Admin.DiffModel
+
+@{
+    ViewData["Title"] = "Diff";
+    var diffTypeClass = "difftype" + Model.MovieDiff.DiffType;
+}
+
+<h1>Diff</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Field
+            </th>
+            <th>
+                Old Value
+            </th>
+            <th>
+                New Value
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <!-- For each row, if the diff type is modified, then only set the class if the content is different -->
+            @{
+                if (Model.MovieDiff.DiffType == "modified") {
+                    if (Model.MovieDiff.FromId != Model.MovieDiff.ToId) {
+                        diffTypeClass = "difftype" + Model.MovieDiff.DiffType;
+                    } else {
+                        diffTypeClass = "";
+                    }
+                }
+            }
+            <td>
+                ID
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.MovieDiff.FromId)
+            </td>
+            <td class="@diffTypeClass">
+                @Html.DisplayFor(modelItem => Model.MovieDiff.ToId)
+            </td>
+        </tr>
+        <tr>
+            <!-- For each row, if the diff type is modified, then only set the class if the content is different -->
+            @{
+                if (Model.MovieDiff.DiffType == "modified") {
+                    if (Model.MovieDiff.FromTitle != Model.MovieDiff.ToTitle) {
+                        diffTypeClass = "difftype" + Model.MovieDiff.DiffType;
+                    } else {
+                        diffTypeClass = "";
+                    }
+                }
+            }
+            <td>
+                Title
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.MovieDiff.FromTitle)
+            </td>
+            <td class="@diffTypeClass">
+                @Html.DisplayFor(modelItem => Model.MovieDiff.ToTitle)
+            </td>
+        </tr>
+        <tr>
+            <!-- For each row, if the diff type is modified, then only set the class if the content is different -->
+            @{
+                if (Model.MovieDiff.DiffType == "modified") {
+                    if (Model.MovieDiff.FromGenre != Model.MovieDiff.ToGenre) {
+                        diffTypeClass = "difftype" + Model.MovieDiff.DiffType;
+                    } else {
+                        diffTypeClass = "";
+                    }
+                }
+            }
+            <td>
+                Genre
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.MovieDiff.FromGenre)
+            </td>
+            <td class="@diffTypeClass">
+                @Html.DisplayFor(modelItem => Model.MovieDiff.ToGenre)
+            </td>
+        </tr>
+        <tr>
+            <!-- For each row, if the diff type is modified, then only set the class if the content is different -->
+            @{
+                if (Model.MovieDiff.DiffType == "modified") {
+                    if (Model.MovieDiff.FromReleaseDate != Model.MovieDiff.ToReleaseDate) {
+                        diffTypeClass = "difftype" + Model.MovieDiff.DiffType;
+                    } else {
+                        diffTypeClass = "";
+                    }
+                }
+            }
+            <td>
+                Release Date
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.MovieDiff.FromReleaseDate)
+            </td>
+            <td class=@diffTypeClass>
+                @Html.DisplayFor(modelItem => Model.MovieDiff.ToReleaseDate)
+            </td>
+        </tr>
+        <tr>
+            <!-- For each row, if the diff type is modified, then only set the class if the content is different -->
+            @{
+                if (Model.MovieDiff.DiffType == "modified") {
+                    if (Model.MovieDiff.FromPrice != Model.MovieDiff.ToPrice) {
+                        diffTypeClass = "difftype" + Model.MovieDiff.DiffType;
+                    } else {
+                        diffTypeClass = "";
+                    }
+                }
+            }
+            <td>
+                Price
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.MovieDiff.FromPrice)
+            </td>
+            <td class=@diffTypeClass>
+                @Html.DisplayFor(modelItem => Model.MovieDiff.ToPrice)
+            </td>
+        </tr>
+    </tbody>
+</table>
